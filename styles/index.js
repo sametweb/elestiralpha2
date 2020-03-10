@@ -26,31 +26,53 @@ const styles = StyleSheet.create({
   }
 });
 
-export const login = StyleSheet.create({
-  loginContainer: {
-    paddingTop: 100,
+export const form = StyleSheet.create({
+  screenContainer: {
+    paddingTop: 80,
     paddingLeft: 30,
-    paddingRight: 30
+    paddingRight: 30,
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "rgba(255,255,255,0.5)"
   },
-  title: {
+  screenTitle: {
     color: secondary,
-    fontSize: 30,
-    fontWeight: "bold",
-    textAlign: "center"
+    fontSize: 36,
+    fontWeight: "bold"
   },
   formContainer: {
     paddingTop: 50,
-    paddingBottom: 20
+    paddingBottom: 50
   },
   input: {
-    fontSize: 18,
+    fontSize: 17,
     height: 50,
     borderStyle: "solid",
     borderBottomWidth: 1,
     borderColor: "#d1d1d2",
-    backgroundColor: `#f1f1f2`,
+    backgroundColor: `rgba(255,255,255,0.5)`,
+    borderRadius: 5,
     paddingLeft: 30,
     marginBottom: 10
+  },
+  button: {
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  primaryButton: {
+    height: 50,
+    backgroundColor: secondary,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 17,
+    textShadowRadius: 1,
+    textShadowColor: "black",
+    textShadowOffset: { width: 1, height: 1 }
   }
 });
 

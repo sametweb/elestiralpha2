@@ -28,15 +28,11 @@ export const login = creds => dispatch => {
   }
 };
 
-export const logout = creds => dispatch => {
+export const logout = () => dispatch => {
   dispatch({ type: LOGOUT_START });
-  AsyncStorage.setItem("token", "mytoken")
-    .then(res =>
-      AsyncStorage.getItem("2token").then(res =>
-        res
-          ? dispatch({ type: LOGOUT_SUCCESS })
-          : dispatch({ type: LOGOUT_ERROR })
-      )
-    )
-    .catch(err => console.log(err));
+  AsyncStorage.removeItem("@token")
+    .then(res => dispatch({ type: LOGOUT_SUCCESS }))
+    .catch(err =>
+      dispatch({ type: LOGOUT_ERROR, payload: "Error logging out." })
+    );
 };
