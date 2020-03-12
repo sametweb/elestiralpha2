@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./styles";
+import styles, { primary, secondary } from "./styles";
 import "react-native-gesture-handler";
 import { View, Text, Button, AsyncStorage } from "react-native";
 
@@ -37,9 +37,17 @@ const AuthStackScreen = ({ navigation }) => {
   );
 };
 
-const HomeStackScreen = ({ navigation }) => {
+const HomeStackScreen = props => {
+  console.log(styles);
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: primary
+        },
+        headerTintColor: "#fff"
+      }}
+    >
       <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="Question" component={Question} />
       <HomeStack.Screen name="Profile" component={Profile} />
@@ -47,7 +55,7 @@ const HomeStackScreen = ({ navigation }) => {
   );
 };
 
-const SettingsStackScreen = ({ navigation }) => {
+const SettingsStackScreen = props => {
   return (
     <SettingsStack.Navigator>
       <SettingsStack.Screen name="Settings" component={Settings} />
@@ -57,62 +65,13 @@ const SettingsStackScreen = ({ navigation }) => {
   );
 };
 
-// function HomeScreen({ navigation }) {
-//   let token = "";
-
-//   storeData = async (token, data) => {
-//     try {
-//       await AsyncStorage.setItem(token, JSON.stringify(data));
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   };
-
-//   retrieveData = async () => {
-//     try {
-//       console.log(JSON.parse(await AsyncStorage.getItem("token")));
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   };
-
-//   React.useEffect(() => {
-//     storeData("token", [1, 2, 3]);
-//     retrieveData();
-//   }, []);
-
-//   return (
-//     <Tab.Navigator
-//       tabBarOptions={{
-//         activeTintColor: "white",
-//         inactiveTintColor: "white",
-//         style: {
-//           backgroundColor: "#141534"
-//         }
-//       }}
-//     >
-//       <Tab.Screen name="Home" component={Home} />
-//       <Tab.Screen name="Profile" component={Profile} />
-//     </Tab.Navigator>
-//   );
-// }
-
-// function DetailsScreen({ navigation }) {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Details Screen</Text>
-//       <Text onPress={() => navigation.push("Home")}>Go to Home</Text>
-//       <Button
-//         title="Update the title"
-//         onPress={() =>
-//           navigation.setOptions({
-//             title: "eleştir!"
-//           })
-//         }
-//       />
-//     </View>
-//   );
-// }
+const myTabBarOptions = {
+  style: {
+    backgroundColor: secondary
+  },
+  activeTintColor: "white",
+  keyboardHidesTabBar: true
+};
 
 const MainApp = connect(state => ({ token: state.token }))(props => {
   console.log("PROPS", props);
@@ -123,24 +82,11 @@ const MainApp = connect(state => ({ token: state.token }))(props => {
           <Stack.Screen name="Auth" component={AuthStackScreen} />
         </Stack.Navigator>
       ) : (
-        <Tab.Navigator
-          screenOptions={{
-            headerRight: () => (
-              <Button
-                onPress={() => alert("This is a button!")}
-                title="Info"
-                color="white"
-              />
-            ),
-            headerStyle: { ...styles.primaryBackground },
-            headerTintColor: "white",
-            headerTitleStyle: {
-              fontWeight: "bold"
-            }
-          }}
-        >
-          <Stack.Screen name="Home" component={HomeStackScreen} />
-          <Stack.Screen name="Settings" component={SettingsStackScreen} />
+        <Tab.Navigator tabBarOptions={myTabBarOptions}>
+          <Tab.Screen name="Home" component={HomeStackScreen} />
+          <Tab.Screen name="Settings" component={SettingsStackScreen} />
+          <Tab.Screen name="Settings3" component={SettingsStackScreen} />
+          <Tab.Screen name="Settings2" component={SettingsStackScreen} />
         </Tab.Navigator>
       )}
     </NavigationContainer>
@@ -148,6 +94,7 @@ const MainApp = connect(state => ({ token: state.token }))(props => {
 });
 
 const App = () => {
+  AsyncStorage.getItem("@token").then(res => console.log("@token", res));
   return (
     <Provider store={store}>
       <MainApp />

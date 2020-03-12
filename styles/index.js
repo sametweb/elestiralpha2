@@ -28,12 +28,13 @@ const styles = StyleSheet.create({
 
 export const form = StyleSheet.create({
   screenContainer: {
+    flex: 1,
+    justifyContent: "space-between",
     paddingTop: 80,
     paddingLeft: 30,
     paddingRight: 30,
-    flex: 1,
     justifyContent: "space-between",
-    backgroundColor: "rgba(255,255,255,0.5)"
+    backgroundColor: "rgba(255,255,255,0.4)"
   },
   screenTitle: {
     color: secondary,
