@@ -10,8 +10,9 @@ const styles = StyleSheet.create({
   secondaryText: { color: "#141534" },
   container: {
     flex: 1,
+    height: "100%",
+    width: "100%",
     padding: 10,
-    justifyContent: "flex-start",
     backgroundColor: "#f0fafd"
   },
   welcome: {
@@ -74,6 +75,45 @@ export const form = StyleSheet.create({
     textShadowRadius: 1,
     textShadowColor: "black",
     textShadowOffset: { width: 1, height: 1 }
+  },
+  messageContainer: {
+    padding: 20,
+    marginTop: 50,
+    backgroundColor: "rgba(255,255,255,0.2)"
+  },
+  signupSuccessful: {
+    fontSize: 20,
+    textAlign: "center",
+    lineHeight: 30
+  }
+});
+
+export const question = StyleSheet.create({
+  container: {
+    backgroundColor: "rgba(0,0,0,0.07)",
+    padding: 10
+  },
+  title: {
+    fontSize: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    fontWeight: "bold",
+    color: "black"
+  },
+  answers: {
+    padding: 10
+  },
+  answer: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    marginBottom: 8,
+    borderRadius: 5,
+    backgroundColor: "#fff"
+  },
+  answerText: {
+    fontSize: 16
   }
 });
 

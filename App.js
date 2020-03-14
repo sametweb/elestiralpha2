@@ -77,7 +77,7 @@ const MainApp = connect(state => ({ token: state.token }))(props => {
   console.log("PROPS", props);
   return (
     <NavigationContainer>
-      {!props.token ? (
+      {props.token ? (
         <Stack.Navigator headerMode="none">
           <Stack.Screen name="Auth" component={AuthStackScreen} />
         </Stack.Navigator>
