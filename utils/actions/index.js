@@ -4,12 +4,18 @@ import { AsyncStorage } from "react-native";
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
+
 export const LOGOUT_START = "LOGOUT_START";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGOUT_ERROR = "LOGOUT_ERROR";
+
 export const SIGNUP_START = "SIGNUP_START";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_ERROR = "SIGNUP_ERROR";
+
+export const FETCH_QUESTIONS_START = "FETCH_QUESTIONS_START";
+export const FETCH_QUESTIONS_SUCCESS = "FETCH_QUESTIONS_SUCCESS";
+export const FETCH_QUESTIONS_ERROR = "FETCH_QUESTIONS_ERROR";
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -72,6 +78,22 @@ export const signup = creds => dispatch => {
         type: SIGNUP_ERROR,
         payload:
           "There was an error on the server while signing up, we couldn't register your information. Please try again."
+      })
+    );
+};
+
+export const fetchQuestions = params => dispatch => {
+  dispatch({ type: FETCH_QUESTIONS_START });
+  apiRequest()
+    .post(`/getquestions`, params)
+    .then(res =>
+      dispatch({ type: FETCH_QUESTIONS_SUCCESS, payload: res.data.data })
+    )
+    .catch(err =>
+      dispatch({
+        type: FETCH_QUESTIONS_ERROR,
+        payload:
+          "There was an error fetching your feed, please swipe down to refresh."
       })
     );
 };

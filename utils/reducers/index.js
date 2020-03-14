@@ -7,13 +7,16 @@ import {
   LOGOUT_ERROR,
   SIGNUP_START,
   SIGNUP_SUCCESS,
-  SIGNUP_ERROR
+  SIGNUP_ERROR,
+  FETCH_QUESTIONS_START,
+  FETCH_QUESTIONS_ERROR,
+  FETCH_QUESTIONS_SUCCESS
 } from "../actions";
 
 const INITIAL_STATE = {
   isLoading: false,
   token: "",
-  title: "This title is coming from reducer!"
+  feed: []
 };
 
 //prettier-ignore
@@ -41,7 +44,14 @@ export const reducer = (state = INITIAL_STATE, action) => {
       return { ...state, isLoading: false, message: action.payload };
     case SIGNUP_ERROR:
       return { ...state, isLoading: false, message: action.payload };
-      
+
+    case FETCH_QUESTIONS_START:
+      return { ...state, isLoading: true, message: '' }
+    case FETCH_QUESTIONS_SUCCESS:
+      return { ...state, isLoading: false, feed: action.payload };
+    case FETCH_QUESTIONS_ERROR:
+      return { ...state, isLoading: false, message: action.payload}
+
     default:
       return state;
   }

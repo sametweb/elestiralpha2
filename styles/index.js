@@ -91,7 +91,8 @@ export const form = StyleSheet.create({
 export const question = StyleSheet.create({
   container: {
     backgroundColor: "rgba(0,0,0,0.07)",
-    padding: 10
+    padding: 10,
+    marginBottom: 20
   },
   title: {
     fontSize: 20,
@@ -102,7 +103,8 @@ export const question = StyleSheet.create({
     color: "black"
   },
   answers: {
-    padding: 10
+    padding: 10,
+    marginBottom: 10
   },
   answer: {
     paddingTop: 10,
@@ -113,7 +115,21 @@ export const question = StyleSheet.create({
     backgroundColor: "#fff"
   },
   answerText: {
-    fontSize: 16
+    fontSize: 15
+  },
+  meta: {
+    flex: 1,
+    height: 22,
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "rgba(255,255,255,0.5)",
+    borderRadius: 5
+  },
+  metaText: {
+    fontSize: 12
   }
 });
 
