@@ -1,5 +1,7 @@
-import { apiRequest } from "../../apiRequest";
+import apiRequest from "../../apiRequest";
 import { AsyncStorage } from "react-native";
+
+export const APP_START = "APP_START";
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -17,19 +19,29 @@ export const FETCH_QUESTIONS_START = "FETCH_QUESTIONS_START";
 export const FETCH_QUESTIONS_SUCCESS = "FETCH_QUESTIONS_SUCCESS";
 export const FETCH_QUESTIONS_ERROR = "FETCH_QUESTIONS_ERROR";
 
+export const appStart = () => dispatch => {
+  AsyncStorage.getItem("@token").then(token => {
+    dispatch({ type: APP_START, payload: JSON.parse(token) });
+  });
+};
+
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   if (creds.username && creds.password) {
     apiRequest()
       .post("/login", creds)
       .then(res => {
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: {
-            token: res.data.data.token,
-            message: "You have successfully logged in!"
-          }
-        });
+        AsyncStorage.setItem("@token", JSON.stringify(res.data.user.token))
+          .then(() =>
+            dispatch({
+              type: LOGIN_SUCCESS,
+              payload: {
+                token: res.data.user.token,
+                message: "You have successfully logged in!"
+              }
+            })
+          )
+          .catch(err => console.log("error asyncstorage"));
       })
       .catch(err =>
         dispatch({
@@ -82,18 +94,20 @@ export const signup = creds => dispatch => {
     );
 };
 
-export const fetchQuestions = params => dispatch => {
+export const fetchQuestions = params => (dispatch, state) => {
   dispatch({ type: FETCH_QUESTIONS_START });
-  apiRequest()
+  apiRequest(state().token)
     .post(`/getquestions`, params)
-    .then(res =>
-      dispatch({ type: FETCH_QUESTIONS_SUCCESS, payload: res.data.data })
-    )
-    .catch(err =>
+    .then(res => {
+      dispatch({ type: FETCH_QUESTIONS_SUCCESS, payload: res.data.questions });
+    })
+    .catch(err => {
+      console.log({ err });
+
       dispatch({
         type: FETCH_QUESTIONS_ERROR,
         payload:
           "There was an error fetching your feed, please swipe down to refresh."
-      })
-    );
+      });
+    });
 };

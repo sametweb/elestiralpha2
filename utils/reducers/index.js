@@ -1,4 +1,5 @@
 import {
+  APP_START,
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
@@ -23,6 +24,9 @@ const INITIAL_STATE = {
 export const reducer = (state = INITIAL_STATE, action) => {
   console.log(action);
   switch (action.type) {
+
+    case APP_START:
+      return { ...state, token: action.payload }
 
     case LOGIN_START:
       return { ...state, isLoading: true, message: "" };

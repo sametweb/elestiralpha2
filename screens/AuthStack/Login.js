@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  Button,
   TextInput,
   KeyboardAvoidingView,
   ImageBackground
 } from "react-native";
-import { connect } from "react-redux";
-import { login as loginAction, logout } from "../../utils/actions";
-
-import { form, primary } from "../../styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
+import { connect } from "react-redux";
+import { appStart, login as loginAction, logout } from "../../utils/actions";
+
+import { form } from "../../styles";
+import Spinner from "../../components/Spinner";
 
 const Login = props => {
   const [creds, setCreds] = useState({ username: "", password: "" });
 
   const handleLogin = creds => props.loginAction(creds);
+
+  useEffect(() => {
+    props.appStart();
+  }, []);
 
   return (
     <ImageBackground
@@ -36,6 +41,7 @@ const Login = props => {
     >
       <KeyboardAvoidingView style={form.screenContainer} behavior="padding">
         <Text style={form.screenTitle}>Log in</Text>
+        {props.isLoading && <Spinner />}
         <View style={form.formContainer}>
           <TextInput
             style={form.input}
@@ -69,4 +75,12 @@ const Login = props => {
   );
 };
 
-export default connect(null, { loginAction, logout })(Login);
+const mapStateToProps = state => {
+  return {
+    isLoading: state.isLoading
+  };
+};
+
+export default connect(mapStateToProps, { appStart, loginAction, logout })(
+  Login
+);

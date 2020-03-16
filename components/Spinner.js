@@ -1,7 +1,7 @@
 import React from "react";
 import { Animated, Easing, View } from "react-native";
 
-const Spinner = () => {
+const Spinner = ({ size }) => {
   let spinValue = new Animated.Value(0);
   const spin = () => {
     spinValue.setValue(0);

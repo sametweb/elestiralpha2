@@ -1,7 +1,12 @@
 import axios from "axios";
 
-export const apiRequest = () => {
+const apiRequest = token => {
   return axios.create({
-    baseURL: "https://elestirorg.appspot.com"
+    baseURL: "https://elestirorg.appspot.com",
+    headers: {
+      AuthToken: token || ""
+    }
   });
 };
+
+export default apiRequest;

@@ -92,7 +92,13 @@ export const question = StyleSheet.create({
   container: {
     backgroundColor: "rgba(0,0,0,0.07)",
     padding: 10,
-    marginBottom: 20
+    paddingBottom: 20,
+    marginBottom: 30,
+    // borderTopWidth: 5,
+    // borderTopColor: primary,
+    // borderBottomWidth: 5,
+    // borderBottomColor: secondary,
+    borderStyle: "solid"
   },
   title: {
     fontSize: 20,
@@ -103,7 +109,7 @@ export const question = StyleSheet.create({
     color: "black"
   },
   answers: {
-    padding: 10,
+    padding: 0,
     marginBottom: 10
   },
   answer: {
@@ -128,17 +134,15 @@ export const question = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.5)",
     borderRadius: 5
   },
-  metaText: {
-    fontSize: 12
+  commentCount: {
+    fontSize: 12,
+    width: "40%"
+  },
+  username: {
+    fontSize: 12,
+    width: "40%",
+    textAlign: "right"
   }
 });
 
 export default styles;
-
-// import { Platform } from 'react-native';
-// const instructions = Platform.select({
-//     ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
-//     android:
-//       "Double tap R on your keyboard to reload,\n" +
-//       "Shake or press menu button for dev menu"
-//   });

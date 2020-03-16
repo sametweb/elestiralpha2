@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles, { primary, secondary } from "./styles";
 import "react-native-gesture-handler";
-import { View, Text, Button, AsyncStorage } from "react-native";
+import { AsyncStorage } from "react-native";
 
 // redux
 import { createStore, applyMiddleware } from "redux";
@@ -38,7 +38,6 @@ const AuthStackScreen = ({ navigation }) => {
 };
 
 const HomeStackScreen = props => {
-  console.log(styles);
   return (
     <HomeStack.Navigator
       screenOptions={{
@@ -74,10 +73,9 @@ const myTabBarOptions = {
 };
 
 const MainApp = connect(state => ({ token: state.token }))(props => {
-  console.log("PROPS", props);
   return (
     <NavigationContainer>
-      {props.token ? (
+      {!props.token ? (
         <Stack.Navigator headerMode="none">
           <Stack.Screen name="Auth" component={AuthStackScreen} />
         </Stack.Navigator>
@@ -94,7 +92,6 @@ const MainApp = connect(state => ({ token: state.token }))(props => {
 });
 
 const App = () => {
-  AsyncStorage.getItem("@token").then(res => console.log("@token", res));
   return (
     <Provider store={store}>
       <MainApp />
