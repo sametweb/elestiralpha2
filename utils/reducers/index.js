@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 
 //prettier-ignore
 export const reducer = (state = INITIAL_STATE, action) => {
-  console.log(`${action.type}:`, state);
+  console.log(`${action.type}`);
   switch (action.type) {
 
     case APP_START:

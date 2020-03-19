@@ -148,19 +148,22 @@ export const question = StyleSheet.create({
     borderRadius: 5
   },
   commentCount: {
-    fontSize: 12,
     width: "40%"
   },
+  commentCountText: {
+    fontSize: 12
+  },
   username: {
+    width: "40%"
+  },
+  usernameText: {
     fontSize: 12,
-    width: "40%",
     textAlign: "right"
   },
   likeContainer: {
     padding: 1,
     borderRadius: 25,
-    position: "relative",
-    backgroundColor: "#e1e1e2"
+    position: "relative"
   },
   likeImage: {
     width: 35,
