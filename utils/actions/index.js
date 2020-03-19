@@ -19,6 +19,10 @@ export const FETCH_QUESTIONS_START = "FETCH_QUESTIONS_START";
 export const FETCH_QUESTIONS_SUCCESS = "FETCH_QUESTIONS_SUCCESS";
 export const FETCH_QUESTIONS_ERROR = "FETCH_QUESTIONS_ERROR";
 
+export const SET_CHOICE_START = "SET_CHOICE_START";
+export const SET_CHOICE_SUCCESS = "SET_CHOICE_SUCCESS";
+export const SET_CHOICE_ERROR = "SET_CHOICE_ERROR";
+
 export const appStart = () => dispatch => {
   AsyncStorage.getItem("@token").then(token => {
     dispatch({ type: APP_START, payload: JSON.parse(token) });
@@ -94,9 +98,10 @@ export const signup = creds => dispatch => {
     );
 };
 
-export const fetchQuestions = params => (dispatch, state) => {
+export const fetchQuestions = params => (dispatch, getState) => {
   dispatch({ type: FETCH_QUESTIONS_START });
-  apiRequest(state().token)
+  const { token } = getState();
+  apiRequest(token)
     .post(`/getquestions`, params)
     .then(res => {
       dispatch({ type: FETCH_QUESTIONS_SUCCESS, payload: res.data.questions });
@@ -110,4 +115,23 @@ export const fetchQuestions = params => (dispatch, state) => {
           "There was an error fetching your feed, please swipe down to refresh."
       });
     });
+};
+
+export const setChoice = params => (dispatch, getState) => {
+  dispatch({ type: SET_CHOICE_START });
+
+  const { token } = getState();
+  const { questionID, choice } = params;
+
+  apiRequest(token)
+    .post("/setchoice", params)
+    .then(res =>
+      dispatch({ type: SET_CHOICE_SUCCESS, payload: { questionID, choice } })
+    )
+    .catch(err =>
+      dispatch({
+        type: SET_CHOICE_ERROR,
+        payload: "There was an error saving your answer. Please try again."
+      })
+    );
 };

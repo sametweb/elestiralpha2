@@ -1,16 +1,21 @@
 import React from "react";
 import { View, Text } from "react-native";
+import Answer from "./Answer";
 import { question } from "../../styles";
 
-const Answers = ({ answers }) => {
+const Answers = ({ answers, questionID, usersChoice }) => {
   return (
     <View style={question.answers}>
       {answers.map(
-        answer =>
+        (answer, i) =>
           answer.value && (
-            <View style={question.answer} key={answer.name}>
-              <Text style={question.answerText}>{answer.value}</Text>
-            </View>
+            <Answer
+              key={i}
+              answer={answer}
+              choice={i + 1}
+              questionID={questionID}
+              usersChoice={usersChoice}
+            />
           )
       )}
     </View>

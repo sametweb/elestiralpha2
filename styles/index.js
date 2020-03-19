@@ -113,14 +113,27 @@ export const question = StyleSheet.create({
     marginBottom: 10
   },
   answer: {
+    padding: 10,
+    marginBottom: 8,
+    borderRadius: 5,
+    backgroundColor: "#fff",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  selectedAnswer: {
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 10,
     marginBottom: 8,
     borderRadius: 5,
-    backgroundColor: "#fff"
+    backgroundColor: secondary
   },
   answerText: {
+    fontSize: 15
+  },
+  selectedAnswerText: {
+    color: "white",
     fontSize: 15
   },
   meta: {
@@ -142,6 +155,18 @@ export const question = StyleSheet.create({
     fontSize: 12,
     width: "40%",
     textAlign: "right"
+  },
+  likeContainer: {
+    padding: 1,
+    borderRadius: 25,
+    position: "relative",
+    backgroundColor: "#e1e1e2"
+  },
+  likeImage: {
+    width: 35,
+    height: 35,
+    backgroundColor: "rgba(255,255,255,1)",
+    borderRadius: 35
   }
 });
 

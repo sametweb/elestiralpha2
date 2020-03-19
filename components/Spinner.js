@@ -22,11 +22,11 @@ const Spinner = ({ size }) => {
   }, []);
 
   return (
-    <View style={{ alignSelf: "center", paddingTop: 20 }}>
+    <View style={{ alignSelf: "center" }}>
       <Animated.Image
         style={{
-          width: 30,
-          height: 30,
+          width: size || 30,
+          height: size || 30,
           transform: [{ rotate: spinspin }]
         }}
         source={require("../images/spinner.png")}

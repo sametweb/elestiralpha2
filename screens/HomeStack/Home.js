@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, Button, Image } from "react-native";
 import { connect } from "react-redux";
 import { fetchQuestions, logout } from "../../utils/actions";
@@ -6,11 +6,12 @@ import styles from "../../styles";
 import Card from "../../components/Question/Card";
 
 const Home = props => {
+  const [fetchParams, setFetchParams] = useState({ count: 10, offset: 0 });
+
   useEffect(() => {
     props.fetchQuestions({ count: 10, offset: 0 });
   }, []);
 
-  console.log(props.feed);
   return (
     <ScrollView style={styles.container}>
       {props.feed.map(item => (
