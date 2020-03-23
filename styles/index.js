@@ -110,7 +110,7 @@ export const question = StyleSheet.create({
   },
   answers: {
     padding: 0,
-    marginBottom: 10
+    marginBottom: 30
   },
   answer: {
     padding: 10,

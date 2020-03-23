@@ -19,6 +19,10 @@ export const FETCH_QUESTIONS_START = "FETCH_QUESTIONS_START";
 export const FETCH_QUESTIONS_SUCCESS = "FETCH_QUESTIONS_SUCCESS";
 export const FETCH_QUESTIONS_ERROR = "FETCH_QUESTIONS_ERROR";
 
+export const FETCH_QUESTION_START = "FETCH_QUESTION_START";
+export const FETCH_QUESTION_SUCCESS = "FETCH_QUESTION_SUCCESS";
+export const FETCH_QUESTION_ERROR = "FETCH_QUESTION_ERROR";
+
 export const SET_CHOICE_START = "SET_CHOICE_START";
 export const SET_CHOICE_SUCCESS = "SET_CHOICE_SUCCESS";
 export const SET_CHOICE_ERROR = "SET_CHOICE_ERROR";
@@ -115,6 +119,21 @@ export const fetchQuestions = params => (dispatch, getState) => {
           "There was an error fetching your feed, please swipe down to refresh."
       });
     });
+};
+
+export const fetchQuestion = id => (dispatch, getState) => {
+  dispatch({ type: FETCH_QUESTION_START });
+  const state = getState();
+  const { token } = state;
+  const question = state.feed.find(q => q.ID === id);
+  if (question) {
+    console.log(question);
+  } else {
+    apiRequest(token)
+      .post(`/question/${id}`)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  }
 };
 
 export const setChoice = params => (dispatch, getState) => {

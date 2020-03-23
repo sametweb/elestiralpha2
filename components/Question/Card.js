@@ -9,7 +9,7 @@ import Meta from "./Meta";
 const Card = ({ item }) => {
   return (
     <View style={question.container}>
-      <Header text={item.question} />
+      <Header text={item.question} ID={item.ID} />
       <Answers
         answers={item.answers}
         questionID={item.ID}

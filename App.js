@@ -1,7 +1,6 @@
 import * as React from "react";
-import styles, { primary, secondary } from "./styles";
+import { primary, secondary } from "./styles";
 import "react-native-gesture-handler";
-import { AsyncStorage } from "react-native";
 
 // redux
 import { createStore, applyMiddleware } from "redux";
