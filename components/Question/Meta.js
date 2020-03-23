@@ -16,7 +16,7 @@ const Meta = ({ metaData, usersInfo }) => {
       <View style={question.likeContainer}>
         <TouchableOpacity>
           <Image
-            style={question.likeImage}
+            style={question.likeImageActive}
             source={require("../../images/like.png")}
           />
         </TouchableOpacity>

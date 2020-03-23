@@ -170,6 +170,12 @@ export const question = StyleSheet.create({
     height: 35,
     backgroundColor: "rgba(255,255,255,1)",
     borderRadius: 35
+  },
+  likeImageActive: {
+    width: 35,
+    height: 35,
+    backgroundColor: secondary,
+    borderRadius: 35
   }
 });
 
