@@ -77,7 +77,8 @@ const Login = props => {
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    message: state.message
   };
 };
 
